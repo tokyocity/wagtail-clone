@@ -1,25 +1,18 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
 
 
 {% block content %}
-    {% comment %}
-        Remember that:
-        Page = the page object
-        Page.title = the title of the page
-        Page.subtitle = the subtitle of the page
 
-        Also:
-        Page.title (in Python) = {{ page.title }} (in the template)
-        Page.subtitle (in Python) = {{ page.subtitle }} (in the template)
-    {% endcomment %}
-    <h1>{{ page.title }}</h1>
-    <h3>{{ page.subtitle }}</h3>
+    {% if page.custom_document %}
+        THIS IS THE DOWNLOAD URL:
+        {{ page.custom_document.url }}
 
-    {% if page.body %}
-        {{ page.body|richtext }}
+        <a href="{{ page.custom_document.url }}" download>Download</a>
+
+
+        {{ page.custom_document.title }}
+        -
+        {{ page.custom_document.description }}
     {% endif %}
-
-
 
 {% endblock content %}
